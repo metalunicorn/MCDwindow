@@ -11,6 +11,17 @@ const PlaylistList = ({getData,action,playerData}) => {
     console.log(getData && getData[0].name)
     return(
         <> 
+        {console.log(getData && getData[0].name)}
+        <ul>
+        {getData && getData.map(x => {
+            return(
+                <li>
+                    <h4>{x.name}</h4>
+                    <img src={`${x.img}`}/>
+                </li>
+            );
+        })}
+        </ul>
         <div>{getData && getData[0].name}</div>
         </>
     );
