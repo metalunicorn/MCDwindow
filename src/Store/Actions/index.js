@@ -35,3 +35,15 @@ async dispatch => {
     let burgerListData = await dispatch(actionPromise('burgerList', gql()))
     console.log(burgerListData)
 }
+
+export const actionBurgerIngridients = (id) =>
+async dispatch => {
+    let BurgerIngridientsData = await dispatch(actionPromise('burgerIng', fetch(`http://localhost:3000/main/${id}`,{method: 'GET'
+}).then(res =>res.json())))
+    console.log(BurgerIngridientsData)
+}
+
+export const actionCountAdd = (add) => ({type: "ADD", add})
+export const actionCountDel = (name) => ({type: "DELETE",name})
+export const actionaddCart  = (itemOrder) => ({type: "CART_ADD",itemOrder})
+export const actionDelCart  = () => ({type: "CART_CLEAR"})

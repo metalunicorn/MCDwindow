@@ -1,37 +1,26 @@
 import { Header } from "./Header/index.js"
 import '../App.scss';
 import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
-import createHistory from "history/createBrowserHistory";
+import history from "../history";
 import { Provider } from "react-redux";
 import { store } from "../Store";
 import {PageHome} from "../Pages/PageHome.js"
+import {CPageBurgerCustoms} from "../Pages/PageBurgerCustoms"
+import {PageBasket} from "../Pages/PageBasket"
 
 export const NotFound = () => <div className="Error">404</div>
-// const PageAdd = ({match:{params: {a,b}}}) => <pre>{+a + +b}</pre>
-// const PageCategory = ({history, match:{params: {_id}}}) => {
-//     setTimeout(() => history.push('/'), 2000)
-//     return <div>cat{_id}</div>
-//     //useEffect(() => запрос, [_id]) //запрос осуществляется actionCreator
-//     //return {
-//         //WORSTKA
-//     //}
-// }
+
 export const Content = () => {
   return (
     <>
       <Provider store={store}>
-        <Router history={createHistory()}>
+        <Router history={history}>
           <Header/>
           <main>
             <Switch>
-              <Route path='/main' component={PageHome} exact />
-              {/* <Route path="/explore" component={CResultSearch} />
-              <Route path='/library/playlists/:_id' component={CPagePlaylist} exact />
-              
-              <Route path="/auth" component={PageAuth} />
-              <Route path="/reg" component={PageReg} />
-              <Route path="/myPlayList" component={CMyPlaylist}/>
-              <Route component={NotFound} exact /> */}
+              <Route path='/' component={PageHome} exact />
+              <Route path='/burgers/:id' component={CPageBurgerCustoms} exact />
+              <Route path='/basket' component={PageBasket} exact />
             </Switch>
           </main>
         </Router>

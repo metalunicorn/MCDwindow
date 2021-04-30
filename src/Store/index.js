@@ -1,10 +1,11 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { authReducer, promiseReducer, playerReducer } from "./Reducers";
+import {promiseReducer,cartReducer} from "./Reducers";
 import thunk from 'redux-thunk';
 
 
 let store = createStore(combineReducers({
     promise: promiseReducer,
+    cart: cartReducer,
 }), applyMiddleware(thunk))
 
 

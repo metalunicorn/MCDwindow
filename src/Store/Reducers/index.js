@@ -1,5 +1,4 @@
 export function promiseReducer(state = {}, action) {
-    if (['LOGOUT', 'LOGIN'].includes(action.type)) return {}
     if (action.type === 'PROMISE') {
         const { name = "default", status, payload, error } = action
         if (status) {
@@ -8,5 +7,55 @@ export function promiseReducer(state = {}, action) {
             }
         }
     }
+    if(action.type === "ADD")
+    {
+        let count = state.burgerIng.payload.ingredients.find(ing => ing.name === action.add).count
+        if ( count<3) {
+            count ++ 
+        }
+        state.burgerIng.payload.ingredients.find(ing => ing.name === action.add).count = count 
+        return {
+            ...state,
+        }
+    }
+    if(action.type === "DELETE")
+    {
+        let count = state.burgerIng.payload.ingredients.find(ing => ing.name === action.name).count 
+        if (count>0) {
+            count -- 
+        }
+        state.burgerIng.payload.ingredients.find(ing => ing.name === action.name).count = count 
+        return {
+            ...state,
+        }
+    }
     return state;
+}
+
+export function cartReducer (state, {type,itemOrder}) {
+    if(state === undefined){
+        if(localStorage.basket) {
+            state =  JSON.parse(localStorage.basket);
+        }
+        else { 
+            state = {};
+        }
+    }
+    if (type === "CART_ADD") {
+        state = {
+            ...state,
+             [itemOrder.id]:{
+                    id: itemOrder.id,
+                    image: itemOrder.img,
+                    name: itemOrder.name,
+                    count: ((state[itemOrder.id] ? state[itemOrder.id].count : 0) + 1  )},
+        };
+        localStorage.basket =  JSON.stringify(state)
+        return state
+    }
+    if (type === "CART_CLEAR") {
+        state = {}
+        return state
+    }
+    return state
 }

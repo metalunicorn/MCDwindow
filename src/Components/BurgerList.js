@@ -7,23 +7,22 @@ import { store } from "../Store";
 
 
 store.dispatch(actionPlaylists())
-const PlaylistList = ({getData,action,playerData}) => {
-    console.log(getData && getData[0].name)
+const BurgerList = ({getData}) => {
     return(
         <> 
-        {console.log(getData && getData[0].name)}
-        <ul>
-        {getData && getData.map(x => {
+        <ul className="burgerList">
+        {getData && getData.map((x,index) => {
             return(
-                <li>
-                    <h4>{x.name}</h4>
+                <li key={index}>
+                    <div>{x.name}</div>
                     <img src={`${x.img}`}/>
+                    <Link to={`/burgers/${x.id}`}><button>Добавить в корзину</button></Link>
                 </li>
+                
             );
         })}
         </ul>
-        <div>{getData && getData[0].name}</div>
         </>
     );
 }
-export const CPlaylistList = connect(s => ({ getData: s && s.promise && s.promise.burgerList && s.promise.burgerList.payload}), {})(PlaylistList)
+export const CBurgerList = connect(s => ({ getData: s && s.promise && s.promise.burgerList && s.promise.burgerList.payload}), {})(BurgerList)
