@@ -6,9 +6,9 @@ import { CBurgerCustomization } from "../Components/BurgerIngredientsList";
 
 
 const PageBurgerCustoms = ({match:{params: {id}},getData,Data2,cart }) => {
-    console.log(id)
-    console.log(Data2)
-    console.log(getData)
+    // console.log(id)
+    // console.log(Data2)
+    // console.log(getData)
     useEffect(() => {
         getData(id)
     }, [id])

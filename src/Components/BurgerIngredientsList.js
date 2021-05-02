@@ -17,25 +17,32 @@ const BurgerCustomization = ({getData,add,del,addCart}) => {
     }
     return (
         <>  
-            
+            <div className = "burgerCustomization">
+            <div className = "burgerCustomizationTitle">
             <h2>{getData.name}</h2>
             <img src={`${getData.img}`}/>
+            </div>
             <div className = "customizationList">
             {getData.ingredients.map((x,index)=>{
                                             
                                             return(
-                                                    <div key={index}>
+                                                    <div className = "customizationListItem" key={index}>
                                                     <div>{x.name}</div>
+                                                    <img src={x.img}/>
+                                                    <div className = "customizationListButton"> 
+                                                    <div>{x.count}</div>
                                                     <button onClick={()=> add2(x.name)}>+</button>
                                                     <button onClick = {()=> del2(x.name)}>-</button>
-                                                    <div>{x.count}</div>
                                                     </div>
-
+                                                    </div>
                                                   )
                                           })
             }
             </div>
-            <Link to={`/basket`}><button onClick={()=>addCart(getData)}>Добавить в корзину</button></Link>
+            <div className= 'buttonAddCart'>
+            <Link to={`/basket`}><button onClick={()=>addCart(getData)}>Подтвердить</button></Link>
+            </div>
+            </div>
         </>
     );
 }

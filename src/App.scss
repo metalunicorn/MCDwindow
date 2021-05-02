@@ -136,6 +136,8 @@ main {
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 0 -7px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
   li {
     display: flex;
     align-items: center;
@@ -151,6 +153,67 @@ main {
 h1 {
   text-align: center;
   margin-bottom: 30px;
-  font-family: speedee-bold;
+  font-family: Arial;
+  font-size: 50px;
   color: #292929;
+}
+.burgerCustomization {
+  .burgerCustomizationTitle {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+
+}
+.customizationList {
+  display: flex;
+  flex-direction: column;
+
+  .customizationListItem{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: Arial;
+    font-size: 30px;
+  }
+  .customizationListButton{
+    display: flex;
+    align-items: center;
+    div {
+      padding-right: 10%;
+    }
+    button {
+      margin-right: 10%;
+      margin-top: 10%;
+      background-color: red;
+      border-radius: 20%;
+      border: 1px solid red;
+      color: white;
+      width: 70px;
+      height: 70px;
+    }
+  }
+}
+.buttonAddCart {
+  a button {
+
+    background-color: #007f4c;
+    -webkit-border-radius: 10px;
+    border-radius: 3px;
+    border: none;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Arial;
+    font-size: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 10%;
+  }
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

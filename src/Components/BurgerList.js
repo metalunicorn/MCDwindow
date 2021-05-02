@@ -16,7 +16,9 @@ const BurgerList = ({getData}) => {
                 <li key={index}>
                     <div>{x.name}</div>
                     <img src={`${x.img}`}/>
-                    <Link to={`/burgers/${x.id}`}><button>Добавить в корзину</button></Link>
+                    <div className= 'buttonAddCart'>
+                    <Link to={`/burgers/${x.id}`}><button>Menu</button></Link>
+                    </div>
                 </li>
                 
             );

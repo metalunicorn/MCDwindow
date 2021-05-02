@@ -42,19 +42,32 @@ export function cartReducer (state, {type,itemOrder}) {
         }
     }
     if (type === "CART_ADD") {
+        console.log(state)
+        for (const key in state) {
+            if (key == itemOrder.id) {
+                console.log(key)
+                if(!(JSON.stringify(state[key].ing) === JSON.stringify(itemOrder.ingredients))){
+                    itemOrder.id = Math.random()
+
+                }
+            }
+        }
         state = {
             ...state,
              [itemOrder.id]:{
                     id: itemOrder.id,
                     image: itemOrder.img,
                     name: itemOrder.name,
+                    ing: itemOrder.ingredients,
                     count: ((state[itemOrder.id] ? state[itemOrder.id].count : 0) + 1  )},
+                   
         };
         localStorage.basket =  JSON.stringify(state)
         return state
     }
     if (type === "CART_CLEAR") {
         state = {}
+        localStorage.removeItem('basket')
         return state
     }
     return state
