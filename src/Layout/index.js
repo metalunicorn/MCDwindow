@@ -1,4 +1,4 @@
-import { Header } from "./Header/index.js"
+
 import '../App.scss';
 import { BrowserRouter as Router, Route, Switch, Redirect, Link } from 'react-router-dom';
 import history from "../history";
@@ -15,7 +15,6 @@ export const Content = () => {
     <>
       <Provider store={store}>
         <Router history={history}>
-          <Header/>
           <main>
             <Switch>
               <Route path='/' component={PageHome} exact />

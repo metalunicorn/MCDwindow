@@ -68,67 +68,9 @@ select {
 }
 
 /* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
-@media (prefers-reduced-motion: reduce) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-$base-palette: (
-  'base': #ff6351,
-  'colors': #cfdfe8 #bfb9c3 #cf9192 #ff6351 #bf413c #7f3128 #732c24
-) !default;
-
-@function color-diff($a, $b) {
-  $sat: saturation($a) - saturation($b);
-  $lig: lightness($a) - lightness($b);
-  $fn-sat: if($sat > 0, 'desaturate', 'saturate');
-  $fn-lig: if($lig > 0, 'darken', 'lighten');
-
-  @return (
-    adjust-hue: -(hue($a) - hue($b)),
-    #{$fn-sat}: abs($sat),
-    #{$fn-lig}: abs($lig)
-  );
-}
-@function palette-diff($palette) {
-  $base: map-get($palette, 'base');
-  $colors: map-get($palette, 'colors');
-  $diffs: ();
-
-  @each $color in $colors {
-    $diffs: append($diffs, color-diff($base, $color));
-  }
-
-  @return $diffs;
-}
-
-@mixin draw-palette($base-color) {
-  $palette: create-palette($base-color);
-  $length: length($palette);
-  $color-stops: append((), nth($palette, 1), comma);
-  $stop-size: 100 / $length;
-
-  @for $i from 1 through $length {
-    $color: nth($palette, $i);
-      
-    @if $i > 1 {
-      $color-stops: append($color-stops, $color $stop-size * ($i - 1) * 1%);
-    }
-    
-    $color-stops: append($color-stops, $color $stop-size * $i * 1%); 
-  }
-
-  background: nth($palette, ceil($length / 2));
-  background: linear-gradient(to right, $color-stops);
-}
-
-$palette-diff: palette-diff($base-palette);
 
 main {
-  padding: 0px 30%;
+  padding: 0px 35%;
 }
 
 .burgerList{
@@ -216,4 +158,19 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+@media screen and (max-width: 680px) {
+  main {
+    padding: 0px 10% 10% ;
+  }
+  h1 {
+    font-size: 30px;
+  }
+  .customizationList .customizationListItem {
+    font-size: 15px;
+  }
+  .customizationList .customizationListButton button {
+    width: 30px;
+    height: 30px;
+  }
 }
